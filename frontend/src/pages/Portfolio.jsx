@@ -38,9 +38,8 @@ export default function Dashboard() {
 
     async function loadStats() {
       try {
-        const res = await fetch(
-          `http://localhost:5000/leetcode/${user.leetcode}`
-        );
+        const { BASE_URL } = await import("../helper/api");
+        const res = await fetch(`${BASE_URL}/leetcode/${user.leetcode}`);
         const data = await res.json();
 
         setTotalQuestions(data.totalQuestions || 0);
