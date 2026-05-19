@@ -33,12 +33,12 @@ export default function Contact() {
         <div className="space-y-3 text-sm">
           <p className="flex items-center gap-2">
             <i className="fa-regular fa-envelope text-blue-300"></i>
-            <span>kinkardinda70@gmail.com</span>
+            <span>trilochank856@gmail.com</span>
           </p>
 
           <p className="flex items-center gap-2">
             <i className="fa-solid fa-phone text-blue-300"></i>
-            <span>+91 7319403576</span>
+            <span>+91-9608942189</span>
           </p>
 
           <p className="flex items-center gap-2">

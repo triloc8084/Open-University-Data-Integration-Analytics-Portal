@@ -30,6 +30,7 @@ const userSchema = new mongoose.Schema(
     /* ================= BASIC PROFILE ================= */
     firstName: String,
     lastName: String,
+    username: String,
     bio: String,
     country: String,
     location: String,
@@ -69,7 +70,13 @@ const userSchema = new mongoose.Schema(
     portfolioWebsite: String,
 
     /* ================= CODING STATS ================= */
+    leetcode: String,
+    gfg: String,
     leetcodeSolved: {
+      type: Number,
+      default: 0
+    },
+    gfgSolved: {
       type: Number,
       default: 0
     },

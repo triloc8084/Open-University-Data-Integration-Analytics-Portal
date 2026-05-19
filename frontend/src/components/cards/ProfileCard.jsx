@@ -76,12 +76,22 @@ export default function ProfileCard() {
         <a href={`mailto:${user.email || ""}`} className="hover:text-blue-300 transition">
           <i className="fa-regular fa-envelope"></i>
         </a>
-        <a href={user.linkedinProfile || "#"} target="_blank" className="hover:text-blue-500 transition">
+        <a href={user.linkedinProfile || "#"} target="_blank" rel="noreferrer" className="hover:text-blue-500 transition">
           <i className="fa-brands fa-linkedin"></i>
         </a>
-        <a href={user.githubProfile || "#"} target="_blank" className="hover:text-blue-400 transition">
+        <a href={user.githubProfile || "#"} target="_blank" rel="noreferrer" className="hover:text-blue-400 transition">
           <i className="fa-brands fa-github"></i>
         </a>
+        {user.leetcode && (
+          <a href={user.leetcode.startsWith("http") ? user.leetcode : `https://leetcode.com/u/${user.leetcode}`} target="_blank" rel="noreferrer" className="hover:text-orange-400 transition" title="LeetCode">
+            <i className="fa-solid fa-code"></i>
+          </a>
+        )}
+        {user.gfg && (
+          <a href={user.gfg.startsWith("http") ? user.gfg : `https://auth.geeksforgeeks.org/user/${user.gfg}/practice/`} target="_blank" rel="noreferrer" className="hover:text-green-500 transition" title="GeeksforGeeks">
+            <i className="fa-solid fa-laptop-code"></i>
+          </a>
+        )}
       </div>
 
       <hr className="my-5 border-white/10" />

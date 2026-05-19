@@ -30,6 +30,10 @@ export default function CertificationCard() {
           {certifications.slice(0, 3).map((cert, index) => (
             <div
               key={index}
+              onClick={() => {
+                const link = cert.link || cert.url;
+                if (link) window.open(link.startsWith("http") ? link : `https://${link}`, "_blank");
+              }}
               className="
               backdrop-blur-xl bg-white/10 border border-white/10 
               p-4 rounded-xl w-44 cursor-pointer

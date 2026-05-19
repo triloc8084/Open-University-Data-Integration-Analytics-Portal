@@ -5,7 +5,18 @@ import Job from "../models/Job.js";
 import { protect, adminOnly } from "../middleware/protect.js";
 
 const router = express.Router();
-router.use(protect, adminOnly);
+
+// Allow all logged-in users (including students) to view news
+router.get("/admin/news", protect, async (req, res) => {
+  try {
+    const data = await Message.find({}).sort({ createdAt: -1 });
+    res.json({ success: true, news: data });
+  } catch (err) {
+    res.status(500).json({ success: false });
+  }
+});
+
+router.use("/admin", protect, adminOnly);
 
 // =================== NEWS ===================
 router.post("/admin/news", async (req, res) => {
@@ -16,15 +27,6 @@ router.post("/admin/news", async (req, res) => {
     res.json({ success: true, message: "Announcement posted successfully" });
   } catch (err) {
     res.status(500).json({ success: false, message: "Server error" });
-  }
-});
-
-router.get("/admin/news", async (req, res) => {
-  try {
-    const data = await Message.find({}).sort({ createdAt: -1 });
-    res.json({ success: true, news: data });
-  } catch (err) {
-    res.status(500).json({ success: false });
   }
 });
 

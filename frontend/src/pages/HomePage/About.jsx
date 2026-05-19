@@ -17,16 +17,6 @@ export default function About() {
       <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-6">
         {[
           {
-            name: "Kinkar Dinda",
-            role: "Full Stack Developer",
-            bio: "Registation no: 12307550",
-          },
-          {
-            name: "Aslam husain",
-            role: "Full Stack Developer",
-            bio: "Passionate about UI, UX and clean design.",
-          },
-          {
             name: "Trilochan Choudhary",
             role: "Full Stack Developer",
             bio: "Optimizing performance and solving hard problems.",
