@@ -1,8 +1,4 @@
-import { useNavigate } from "react-router-dom";
-
 export default function CertificationCard() {
-
-  const navigate = useNavigate();
 
   const user = JSON.parse(localStorage.getItem("user")) || {};
   const certifications = user.certifications || [];

@@ -14,7 +14,9 @@ export default function PostJob() {
       const res = await apiFetch("/jobs");
       const data = await res.json();
       setJobsList(data.jobs || []);
-    } catch { }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const set = (field) => (e) => setForm(prev => ({ ...prev, [field]: e.target.value }));

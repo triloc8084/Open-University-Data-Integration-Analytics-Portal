@@ -6,6 +6,7 @@ import StatCard from "../components/cards/StatCard";
 import SkillsCard from "../components/cards/SkillsCard";
 import DsaAnalysisCard from "../components/cards/DsaAnalysisCard";
 import DigitalClock from "../components/cards/DigitalClock";
+import { BASE_URL } from "../helper/api";
 
 export default function Dashboard() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -38,7 +39,6 @@ export default function Dashboard() {
 
     async function loadStats() {
       try {
-        const { BASE_URL } = await import("../helper/api");
         const res = await fetch(`${BASE_URL}/leetcode/${user.leetcode}`);
         const data = await res.json();
 
@@ -57,6 +57,7 @@ export default function Dashboard() {
     }
 
     loadStats();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loading) {

@@ -186,7 +186,7 @@ export default function Signup({ setShowSignup }) {
         setShowSignup(false);
       }
 
-    } catch (error) {
+    } catch {
       toast.error("Server error. Please try again later.");
       
     } finally {

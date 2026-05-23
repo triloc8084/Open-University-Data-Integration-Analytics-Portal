@@ -44,7 +44,7 @@ export default function Login({ setShowSignup }) {
       localStorage.setItem("user", JSON.stringify(data.user));
       toast.success("Login successful!");
       setTimeout(() => navigate(data.user.role === "Admin" ? "/admin" : "/dashboard"), 600);
-    } catch (err) {
+    } catch {
       toast.error("Server error. Please try again.");
     } finally {
       setLoading(false);

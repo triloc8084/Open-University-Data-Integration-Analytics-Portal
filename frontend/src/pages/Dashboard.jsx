@@ -7,16 +7,16 @@ import apiFetch from "../helper/api.js";
 const MEDALS = ["🥇", "🥈", "🥉"];
 
 export default function Dashboard() {
-  const [dashboard, setDashboard] = useState(null);
-  const [leaderboardType, setLeaderboardType] = useState("global");
-  const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
-
   const user = JSON.parse(localStorage.getItem("user") || "null");
   const currentUserEmail = user?.email?.toLowerCase() || "";
 
+  const [dashboard, setDashboard] = useState(null);
+  const [leaderboardType, setLeaderboardType] = useState("global");
+  const [loading, setLoading] = useState(!!currentUserEmail);
+  const [search, setSearch] = useState("");
+
   useEffect(() => {
-    if (!currentUserEmail) { setLoading(false); return; }
+    if (!currentUserEmail) return;
     apiFetch(`/api/dashboard?email=${currentUserEmail}`)
       .then(r => r.json())
       .then(data => setDashboard(data))

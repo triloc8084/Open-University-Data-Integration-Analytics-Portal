@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import apiFetch from "../../helper/api.js";
 
 export default function ManageStudents() {
@@ -14,10 +14,7 @@ export default function ManageStudents() {
   const [total, setTotal] = useState(0);
   const LIMIT = 20;
 
-  useEffect(() => { fetchStudents(); }, [collegeFilter, questionFilter, activeFilter, search, page]);
-  useEffect(() => { fetchColleges(); }, []);
-
-  const fetchStudents = async () => {
+  const fetchStudents = useCallback(async () => {
     try {
       setLoading(true);
       let url = `/admin/students?page=${page}&limit=${LIMIT}`;
@@ -31,15 +28,20 @@ export default function ManageStudents() {
       setTotalPages(data.totalPages || 1);
       setTotal(data.total || 0);
     } catch (err) { console.error(err); } finally { setLoading(false); }
-  };
+  }, [collegeFilter, questionFilter, activeFilter, search, page]);
 
-  const fetchColleges = async () => {
+  const fetchColleges = useCallback(async () => {
     try {
       const res = await apiFetch("/admin/colleges");
       const data = await res.json();
       setColleges(data.colleges || []);
-    } catch { }
-  };
+    } catch (err) {
+      console.error(err);
+    }
+  }, []);
+
+  useEffect(() => { fetchStudents(); }, [fetchStudents]);
+  useEffect(() => { fetchColleges(); }, [fetchColleges]);
 
   const handleSearch = (e) => { setSearch(e.target.value); setPage(1); };
 

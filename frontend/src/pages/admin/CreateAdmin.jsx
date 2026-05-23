@@ -16,7 +16,9 @@ export default function CreateAdmin() {
       const res = await apiFetch("/admin/list-admins");
       const data = await res.json();
       setAdmins(data.admins || []);
-    } catch { }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const set = (field) => (e) => setForm(prev => ({ ...prev, [field]: e.target.value }));
